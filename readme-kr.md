@@ -1,13 +1,19 @@
-# Functional Programming Jargon
+# 함수형 프로그래밍 용어집
 
 > The whole idea of this repos is to try and define jargon from combinatorics and category theory jargon that are used in functional programming in a easier fashion.
 
+> 이 저장소의 목적은 함수형 프로그래밍에서 사용되는 조합론과 범주론의 전문 용어를 쉬운 방식으로 설명하는 것입니다.
+
 *Let's try and define these with examples, this is a WIP—please feel free to send PR ;)*
+
+*함께 이 예제를 설명해봅시다. 언제든지 편하게 PR을 보내주세요 ;)*
 
 
 ## Arity
 
 > The number of arguments a function takes. From words like unary, binary, ternary, etc. This word has the distinction of being composed of two suffixes, "-ary" and "-ity." Addition, for example, takes two arguments, and so it is defined as a binary function or a function with an arity of two. Such a function may sometimes be called "dyadic" by people who prefer Greek roots to Latin. Likewise, a function that takes a variable number of arguments is called "variadic," whereas a binary function must be given two and only two arguments, currying and partial application notwithstanding (see below).
+
+> 번역해야함
 
 ```js
 const sum = (a, b) => a + b;
@@ -22,6 +28,8 @@ console.log(arity);
 ## Higher-Order Functions (HOF)
 
 > A function which takes a function as an argument and/or returns a function.
+
+> 인자로 함수를 받거나 함수를 반환하는 함수를 의미합니다.
 
 ```js
 const filter = (pred, xs) => {
@@ -48,6 +56,9 @@ filter(is(Number), [0, '1', 2, null]); //=> [0, 2]
 > The process of getting a function with lesser arity compared to the original
 function by fixing the number of arguments is known as partial application.
 
+> 인자의 수가 고정 되어있는 원래의 함수에서 원래 함수보다 
+낮은 인자 수의 함수를 얻는 과정을 Partial Application라고 합니다.
+
 ```js
 let sum = (a, b) => a + b;
 
@@ -64,6 +75,8 @@ partial(2); //=> 42
 
 > The process of converting a function with multiple arity into the same function with an arity of one. Not to be confused with partial application, which can produce a function with an arity greater than one.
 
+> 다수의 인자를 가지는 함수를 하나의 인자를 가진 함수로 변환하는 방법입니다. 많은 인자를 가진 함수에서 함수를 생산할 수 있는 Partial Application과는 다릅니다.
+
 ```js
 let sum = (a, b) => a + b;
 
@@ -76,6 +89,8 @@ curriedSum(40)(2) // 42.
 ## Composition
 
 > A function which combines two values of a given type (usually also some kind of functions) into a third value of the same type.
+
+> 번역 해야함
 
 The most straightforward type of composition is called "normal function composition".
 It allows you to combines functions that accept and return a single value.
@@ -94,6 +109,8 @@ floorAndToString(121.212121) // "121"
 > A function is said to be pure if the return value is only determined by its
 input values, without any side effects.
 
+> 함수가 리턴 값이 입력 값에 의해 결정되는 경우 Side effect없이 리턴하는 함수를 Purity라고 합니다.
+
 ```js
 let greet = "yo";
 
@@ -103,6 +120,8 @@ greet // yo;
 ```
 
 As opposed to:
+
+반대의 경우:
 
 ```js
 let numbers = [1, 2, 3];
@@ -118,6 +137,8 @@ numbers // []
 
 > A function or expression is said to have a side effect if apart from returning a value, it modifies some state or has an observable interaction with external functions.
 
+> 번역 해야 함
+
 ```js
 console.log("IO is a side effect!");
 ```
@@ -128,6 +149,8 @@ console.log("IO is a side effect!");
 > A function is said to be idempotent if it has no side-effects on multiple
 executions with the the same input parameters.
 
+> 같은 매개 변수와 여러 번의 실행에도 아무런 Side effect가 없는 경우에 Idempotency(멱등성)라고 합니다.
+
 `f(f(x)) = f(x)`
 
 `Math.abs(Math.abs(10))`
@@ -137,6 +160,8 @@ executions with the the same input parameters.
 ## Point-Free Style
 
 > Writing functions where the definition does not explicitly define arguments. This style usually requires [currying](#currying) or other [Higher-Order functions](#higher-order-functions-hof). A.K.A Tacit programming.
+
+> 정의가 명시적으로 인자를 정의하지 않는 함수를 작성합니다. 이 스타일은 일반적으로 [Currying](#currying) 또는 [Higher-Order functions](#higher-order-functions-hof)가 필요합니다. Tacit programming라고도 불립니다. 번역 다시
 
 ```js
 // Given
@@ -170,11 +195,15 @@ Points-free function definitions look just like normal assignments without `func
 
 > Objects with associated functions that adhere certain rules. E.g. [monoid](#monoid)
 
+> 특정한 규칙을 따르는 함수와 관련된 오브젝트 입니다. 예를들어 [Monoid](#monoid)가 있습니다.
+
 ---
 
 ## Value 
 
 > Any complex or primitive value that is used in the computation, including functions. Values in functional programming are assumed to be immutable.
+
+> 함수를 포함하여 계산에 사용되는 복잡하거나 기본적인 값입니다. 함수형 프로그래밍에서 Value는 불변합니다.
 
 ```js
 5
@@ -366,6 +395,8 @@ You may also see `of` and `chain` referred to as `return` and `bind` (not be con
 
 > An object that has `extract` and `extend` functions.
 
+> `extract`와 `extend` 함수를 가진 오브젝트를 의미합니다.
+
 ```js
 let CoIdentity = v => ({
     val: v,
@@ -398,6 +429,8 @@ CoIdentity(1).extend(co => co.extract() + 1) // CoIdentity(2)
 ## Morphism
 
 > A transformation function.
+
+> 무언가로 인해 변화한 함수를 의미합니다.
 
 ---
 
@@ -448,6 +481,8 @@ Array.prototype.equals = arr => {
 
 An object that has a `concat` function that combines it with another object of the same type.
 
+같은 타입인 다른 오브젝트와 결합할 수 있는 `concat` 함수를 가진 오브젝트를 의미합니다.
+
 ```js
 [1].concat([2]) // [1, 2]
 ```
@@ -457,6 +492,8 @@ An object that has a `concat` function that combines it with another object of t
 ## Foldable
 
 > An object that has a reduce function that can transform that object into some other type.
+
+> 다른 유형에 해당 오브젝트를 변환 할 수 있는 `reduce` 함수가 있는 오브젝트입니다.
 
 ```js
 let sum = list => list.reduce((acc, val) => acc + val, 0);
